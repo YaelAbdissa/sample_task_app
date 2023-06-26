@@ -170,35 +170,34 @@ class TaskListItem extends StatelessWidget {
         child: SizedBox(
           width: MediaQuery.of(context).size.width,
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        child: Text(
-                          task.taskTitle,
-                          style: TextStyle(
-                            color: textColor3,
-                            fontSize: 20,
-                            fontFamily: fontNamePoppins,
-                            fontWeight: FontWeight.normal,
-                          ),
-                          overflow: TextOverflow.ellipsis,
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      child: Text(
+                        task.taskTitle,
+                        style: TextStyle(
+                          color: textColor3,
+                          fontSize: 20,
+                          fontFamily: fontNamePoppins,
+                          fontWeight: FontWeight.normal,
                         ),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
                       ),
-                      UITextWidget(
-                        text: task.dueDate,
-                        textColor: textColor2,
-                        fontSize: 14,
-                        fontFamily: fontNamePoppins,
-                        fontWeight: FontWeight.normal,
-                      )
-                    ],
-                  )
-                ],
+                    ),
+                    UITextWidget(
+                      text: task.dueDate,
+                      textColor: textColor2,
+                      fontSize: 14,
+                      fontFamily: fontNamePoppins,
+                      fontWeight: FontWeight.normal,
+                    )
+                  ],
+                ),
               ),
               const UISvgIcon(name: "assets/icons/chevron_right.svg")
             ],
