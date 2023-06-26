@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:task_list_2/widgets/ui_horizontal_space.dart';
 import 'package:task_list_2/widgets/ui_svg_icon.dart';
 
 import '../configs/constants.dart';
+import '../handler/task_handler.dart';
 import '../widgets/ui_text_widget.dart';
 import '../widgets/ui_vertical_space.dart';
 import 'list_item.dart';
@@ -12,6 +14,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final taskHandler = Provider.of<TaskHandler>(context);
     return SafeArea(
       child: Scaffold(
         backgroundColor: bgColor,
@@ -82,7 +85,8 @@ class HomeScreen extends StatelessWidget {
                                 fontWeight: FontWeight.normal,
                               ),
                               UITextWidget(
-                                text: "6 Tasks",
+                                text:
+                                    "${taskHandler.getAllTasks().length} Tasks",
                                 textColor: textColor2,
                                 fontSize: 14,
                                 fontFamily: fontNamePoppins,

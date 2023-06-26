@@ -5,7 +5,7 @@ import '../model/task.dart' as taskList;
 class TaskHandler with ChangeNotifier {
   List<dynamic> tasks = taskList.tasks;
 
-  Future<List<TaskModel>> getAllTasks() async {
+  List<TaskModel> getAllTasks() {
     final jsonList = tasks;
     return jsonList.map((json) => TaskModel.fromJson(json)).toList();
   }

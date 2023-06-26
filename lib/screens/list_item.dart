@@ -16,11 +16,6 @@ class ListTaskItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final taskHandler = Provider.of<TaskHandler>(context);
-    Future<List<TaskModel>> loadJsonData() async {
-      final taskList = await taskHandler.getAllTasks();
-
-      return taskList;
-    }
 
     return SafeArea(
       child: Scaffold(
@@ -60,7 +55,7 @@ class ListTaskItem extends StatelessWidget {
                           fontWeight: FontWeight.w600,
                         ),
                         UITextWidget(
-                          text: "6 Tasks",
+                          text: "${taskHandler.getAllTasks().length} Tasks",
                           textColor: textColor2,
                           fontSize: 18,
                           fontFamily: fontNamePoppins,
@@ -88,28 +83,17 @@ class ListTaskItem extends StatelessWidget {
                   ],
                 ),
               ),
-              FutureBuilder<List<TaskModel>>(
-                future: loadJsonData(),
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    List<TaskModel> jsonData = snapshot.data!;
-                    return ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: jsonData.length,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemBuilder: (context, index) {
-                          return TaskListItem(
-                            task: jsonData[index],
-                            index: index,
-                            taskHandler: taskHandler,
-                          );
-                        });
-                  } else if (snapshot.hasError) {
-                    return const Text('Error loading JSON');
-                  }
-                  return const CircularProgressIndicator();
-                },
-              )
+              ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: taskHandler.getAllTasks().length,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    return TaskListItem(
+                      task: taskHandler.getAllTasks()[index],
+                      index: index,
+                      taskHandler: taskHandler,
+                    );
+                  }),
             ],
           ),
         ),
