@@ -5,13 +5,17 @@ import '../configs/constants.dart';
 class UITextFieldWidget extends StatelessWidget {
   final String text;
   final FocusNode focusNode;
+  final TextEditingController controller;
   final bool haveMaxLines;
+  final Function? onChanged;
 
   const UITextFieldWidget({
     super.key,
     required this.text,
     this.haveMaxLines = false,
     required this.focusNode,
+    required this.controller,
+    this.onChanged,
   });
 
   @override
@@ -34,6 +38,7 @@ class UITextFieldWidget extends StatelessWidget {
         // ),
       ),
       child: TextField(
+        controller: controller,
         focusNode: focusNode,
         maxLines: haveMaxLines ? 8 : 1,
         decoration: InputDecoration(
@@ -54,7 +59,11 @@ class UITextFieldWidget extends StatelessWidget {
               fontFamily: fontNamePoppins,
               fontSize: 16,
             )),
-        onChanged: (value) {},
+        onChanged: (value) {
+          if (onChanged != null) {
+            onChanged!(text);
+          }
+        },
       ),
     );
   }

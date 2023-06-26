@@ -1,6 +1,6 @@
 var tasks = [
   {
-    "task_title": "Wire Framing",
+    "task_title": "Wire Framing Wire Framing Wire Framing",
     "due_date": "3 Days",
     "is_checked": true,
     "description":

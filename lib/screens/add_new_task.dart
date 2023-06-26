@@ -1,19 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:task_list_2/handler/task_handler.dart';
 import 'package:task_list_2/widgets/ui_custom_drop_down_widget.dart';
 
 import '../configs/constants.dart';
+import '../model/task_model.dart';
 import '../widgets/ui_svg_icon.dart';
 import '../widgets/ui_text_field.dart';
 import '../widgets/ui_text_widget.dart';
 import '../widgets/ui_vertical_space.dart';
 
 class AddNewTask extends StatelessWidget {
-  const AddNewTask({super.key});
+  final TaskHandler taskHandler;
+  const AddNewTask({
+    super.key,
+    required this.taskHandler,
+  });
 
   @override
   Widget build(BuildContext context) {
     FocusNode taskTitleFocusNode = FocusNode();
+    TextEditingController taskTitleController = TextEditingController();
+    TextEditingController taskDescriptionController = TextEditingController();
     FocusNode taskDescriptionFocusNode = FocusNode();
+    String type = "";
+    String timeFrame = "";
+    String priority = "";
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: bgColor,
@@ -65,6 +77,7 @@ class AddNewTask extends StatelessWidget {
                     UITextFieldWidget(
                       text: "Text",
                       focusNode: taskTitleFocusNode,
+                      controller: taskTitleController,
                     ),
                     const UIVerticalSpace(height: 24),
                     UITextWidget(
@@ -76,8 +89,11 @@ class AddNewTask extends StatelessWidget {
                       // line height
                     ),
                     const UIVerticalSpace(height: 4),
-                    const CustomDropdown(
-                      options: [
+                    CustomDropdown(
+                      onDataReceived: (option) {
+                        type = option;
+                      },
+                      options: const [
                         'Work',
                         'Personal Project',
                         'Self',
@@ -93,8 +109,11 @@ class AddNewTask extends StatelessWidget {
                       // line height
                     ),
                     const UIVerticalSpace(height: 4),
-                    const CustomDropdown(
-                      options: [
+                    CustomDropdown(
+                      onDataReceived: (option) {
+                        priority = option;
+                      },
+                      options: const [
                         'Needs done',
                         'Nice to have',
                         'Nice idea',
@@ -110,8 +129,11 @@ class AddNewTask extends StatelessWidget {
                       // line height
                     ),
                     const UIVerticalSpace(height: 4),
-                    const CustomDropdown(
-                      options: [
+                    CustomDropdown(
+                      onDataReceived: (option) {
+                        timeFrame = option;
+                      },
+                      options: const [
                         'Today',
                         '3 days',
                         'Tonight',
@@ -133,6 +155,7 @@ class AddNewTask extends StatelessWidget {
                       text: "",
                       haveMaxLines: true,
                       focusNode: taskDescriptionFocusNode,
+                      controller: taskDescriptionController,
                     ),
                     const UIVerticalSpace(height: 24),
                   ],
@@ -142,27 +165,42 @@ class AddNewTask extends StatelessWidget {
             ],
           ),
         ),
-        floatingActionButton: Container(
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-              color: primaryColor,
-              boxShadow: const [
-                BoxShadow(
-                  color: Color(0x0C000000),
-                  blurRadius: 20,
-                  offset: Offset(0, 4),
-                  spreadRadius: 0,
-                )
-              ],
-              borderRadius: BorderRadius.circular(12)),
-          height: 50,
-          margin: const EdgeInsets.only(left: 40, right: 8),
-          child: UITextWidget(
-              text: "Submit",
-              textColor: whiteColor,
-              fontSize: 20,
-              fontFamily: fontNamePoppins,
-              fontWeight: FontWeight.w500),
+        floatingActionButton: GestureDetector(
+          onTap: () {
+            taskHandler.createRecord(
+              TaskModel(
+                type: type,
+                priority: priority,
+                taskTitle: taskTitleController.text,
+                dueDate: timeFrame,
+                description: taskDescriptionController.text,
+                isChecked: false,
+              ),
+            );
+            Navigator.pop(context);
+          },
+          child: Container(
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+                color: primaryColor,
+                boxShadow: const [
+                  BoxShadow(
+                    color: Color(0x0C000000),
+                    blurRadius: 20,
+                    offset: Offset(0, 4),
+                    spreadRadius: 0,
+                  )
+                ],
+                borderRadius: BorderRadius.circular(12)),
+            height: 50,
+            margin: const EdgeInsets.only(left: 40, right: 8),
+            child: UITextWidget(
+                text: "Submit",
+                textColor: whiteColor,
+                fontSize: 20,
+                fontFamily: fontNamePoppins,
+                fontWeight: FontWeight.w500),
+          ),
         ),
       ),
     );

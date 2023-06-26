@@ -15,7 +15,7 @@ class TaskModel {
     required this.isChecked,
   });
 
-  Map<String, dynamic> toJson() {
+  dynamic toJson() {
     return {
       'is_checked': isChecked,
       'description': description,

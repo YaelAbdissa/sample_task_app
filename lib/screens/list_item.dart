@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../configs/constants.dart';
 import '../handler/task_handler.dart';
@@ -14,8 +15,7 @@ class ListTaskItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final taskHandler = TaskHandler();
-
+    final taskHandler = Provider.of<TaskHandler>(context);
     Future<List<TaskModel>> loadJsonData() async {
       final taskList = await taskHandler.getAllTasks();
 
@@ -73,7 +73,9 @@ class ListTaskItem extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const AddNewTask(),
+                            builder: (context) => AddNewTask(
+                              taskHandler: taskHandler,
+                            ),
                           ),
                         );
                       },
