@@ -5,9 +5,9 @@ import '../configs/constants.dart';
 
 class CustomDropdown extends StatefulWidget {
   final List options;
-  final void Function(String) onDataReceived;
+  final void Function(String) onChanged;
   const CustomDropdown(
-      {super.key, required this.options, required this.onDataReceived});
+      {super.key, required this.options, required this.onChanged});
 
   @override
   _CustomDropdownState createState() => _CustomDropdownState();
@@ -67,7 +67,7 @@ class _CustomDropdownState extends State<CustomDropdown> {
                         selectedOption = widget.options[index];
                         dropdownOpened = false;
                       });
-                      widget.onDataReceived(selectedOption!);
+                      widget.onChanged(selectedOption!);
                     },
                   );
                 },

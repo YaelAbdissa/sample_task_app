@@ -90,7 +90,7 @@ class AddNewTask extends StatelessWidget {
                     ),
                     const UIVerticalSpace(height: 4),
                     CustomDropdown(
-                      onDataReceived: (option) {
+                      onChanged: (option) {
                         type = option;
                       },
                       options: const [
@@ -110,7 +110,7 @@ class AddNewTask extends StatelessWidget {
                     ),
                     const UIVerticalSpace(height: 4),
                     CustomDropdown(
-                      onDataReceived: (option) {
+                      onChanged: (option) {
                         priority = option;
                       },
                       options: const [
@@ -130,7 +130,7 @@ class AddNewTask extends StatelessWidget {
                     ),
                     const UIVerticalSpace(height: 4),
                     CustomDropdown(
-                      onDataReceived: (option) {
+                      onChanged: (option) {
                         timeFrame = option;
                       },
                       options: const [
