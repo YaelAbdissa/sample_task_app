@@ -16,10 +16,6 @@ For help getting started with Flutter development, view the
 samples, guidance on mobile development, and a full API reference.
 
 
-![Alt Text](https://github.com/YaelAbdissa/sample_task_app/blob/master/images/task-app-home.png)
+![Alt Text](https://github.com/YaelAbdissa/sample_task_app/blob/master/images/task-app-home.png) ![Alt Text](https://github.com/YaelAbdissa/sample_task_app/blob/master/images/task-app-tasks.png)
 
-![Alt Text](https://github.com/YaelAbdissa/sample_task_app/blob/master/images/task-app-tasks.png)
-
-![Alt Text](https://github.com/YaelAbdissa/sample_task_app/blob/master/images/task-app-task-preview.png)
-
-![Alt Text](https://github.com/YaelAbdissa/sample_task_app/blob/master/images/task-app-add-task.png)
+![Alt Text](https://github.com/YaelAbdissa/sample_task_app/blob/master/images/task-app-task-preview.png) ![Alt Text](https://github.com/YaelAbdissa/sample_task_app/blob/master/images/task-app-add-task.png)
