@@ -25,6 +25,7 @@ class MyApp extends StatelessWidget {
         primaryColor: primaryColor,
       ),
       home: const HomeScreen(),
+      debugShowCheckedModeBanner: false,
       // home: const ListTaskItem(),
     );
   }

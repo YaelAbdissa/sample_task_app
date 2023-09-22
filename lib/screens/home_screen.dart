@@ -28,7 +28,7 @@ class HomeScreen extends StatelessWidget {
                 fontFamily: fontNamePoppins,
                 fontSize: 32,
                 fontWeight: FontWeight.w600,
-                text: 'Sample App',
+                text: 'Task App',
                 textColor: primaryColor,
               ),
               const UIVerticalSpace(height: 40),
